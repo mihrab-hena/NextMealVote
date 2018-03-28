@@ -6,9 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using NextMealVote.Models;
 
-namespace NextMealVote.Controllers
+namespace NextMealVote.Models
 {
     public class UsersController : Controller
     {

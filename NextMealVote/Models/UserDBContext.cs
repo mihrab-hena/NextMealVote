@@ -10,5 +10,6 @@ namespace NextMealVote.Models
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<Meal> Meals { get; set; }
     }
 }

@@ -10,107 +10,107 @@ using NextMealVote.Models;
 
 namespace NextMealVote.Controllers
 {
-    public class UsersController : Controller
+    public class MealsController : Controller
     {
         private UserDBContext db = new UserDBContext();
 
-        // GET: Users
+        // GET: Meals
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            return View(db.Meals.ToList());
         }
 
-        // GET: Users/Details/5
+        // GET: Meals/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            Meal meal = db.Meals.Find(id);
+            if (meal == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(meal);
         }
 
-        // GET: Users/Create
+        // GET: Meals/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Users/Create
+        // POST: Meals/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,FirstName,LastName,Email,UserRole,Age,Gender,StreetNumber,StreetName,PostCode,City,Country")] User user)
+        public ActionResult Create([Bind(Include = "MealId,Name,Price,MealType,PhotoPath,PhotoName")] Meal meal)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
+                db.Meals.Add(meal);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            return View(meal);
         }
 
-        // GET: Users/Edit/5
+        // GET: Meals/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            Meal meal = db.Meals.Find(id);
+            if (meal == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(meal);
         }
 
-        // POST: Users/Edit/5
+        // POST: Meals/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,FirstName,LastName,Email,UserRole,Age,Gender,StreetNumber,StreetName,PostCode,City,Country")] User user)
+        public ActionResult Edit([Bind(Include = "MealId,Name,Price,MealType,PhotoPath,PhotoName")] Meal meal)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(meal).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(user);
+            return View(meal);
         }
 
-        // GET: Users/Delete/5
+        // GET: Meals/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            Meal meal = db.Meals.Find(id);
+            if (meal == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(meal);
         }
 
-        // POST: Users/Delete/5
+        // POST: Meals/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
+            Meal meal = db.Meals.Find(id);
+            db.Meals.Remove(meal);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
